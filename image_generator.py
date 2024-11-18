@@ -27,7 +27,9 @@ def create_image(title, filename):
             title_font = ImageFont.load_default()
 
         # Adicionar texto
-        title_width, title_height = draw.textsize(title, font=title_font)
+        bbox = draw.textbbox((0, 0), title, font=title_font)
+        title_width = bbox[2] - bbox[0]
+        title_height = bbox[3] - bbox[1]
         title_position = ((image_size[0] - title_width) // 2, (image_size[1] - title_height) // 2)
         draw.text(title_position, title, fill=title_color, font=title_font)
 
